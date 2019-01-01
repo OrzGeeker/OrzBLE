@@ -1,0 +1,5 @@
+Pods/
+*.lock
+.DS_Store
+xcshareddata/
+xcuserdata/
