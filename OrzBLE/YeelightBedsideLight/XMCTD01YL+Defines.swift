@@ -132,7 +132,7 @@ public extension XMCTD01YL {
             return cmdData
         }
     }
-    public enum message: String {
+    enum message: String {
         case disconnected = "device disconnected!"
         case authTip = "Need auth! You should press the mode change Button of Yeelight Bedside light to allow you phone control it!"
         case authSuccess = "Auth successfully!"

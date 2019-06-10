@@ -11,7 +11,7 @@ import RxSwift
 
 public extension XMCTD01YL {
     
-    public func connect() {
+    func connect() {
         
         self.disconnect()
         
@@ -23,7 +23,7 @@ public extension XMCTD01YL {
         }
     }
     
-    public func disconnect() {
+    func disconnect() {
         
         if let peripheral = self.control?.service.peripheral.peripheral {
             self.centralManager.manager.cancelPeripheralConnection(peripheral);
@@ -35,27 +35,27 @@ public extension XMCTD01YL {
         self.statusDisposable?.dispose()
     }
     
-    public func powerOn() {
+    func powerOn() {
         self.sendCommand(.powerOn)
     }
     
-    public func powerOff() {
+    func powerOff() {
         self.sendCommand(.powerOff)
     }
     
-    public func dayLight() {
+    func dayLight() {
         self.sendCommand(.daylight)
     }
     
-    public func ambiLight() {
+    func ambiLight() {
         self.sendCommand(.ambilight)
     }
     
-    public func colorLight(_ RGB: (R: UInt8, G: UInt8, B: UInt8, brightness: UInt8)) {
+    func colorLight(_ RGB: (R: UInt8, G: UInt8, B: UInt8, brightness: UInt8)) {
         self.sendCommand(.color(RGB))
     }
     
-    public func brightLight(_ bright: UInt8) {
+    func brightLight(_ bright: UInt8) {
         self.sendCommand(.bright(bright))
     }
     

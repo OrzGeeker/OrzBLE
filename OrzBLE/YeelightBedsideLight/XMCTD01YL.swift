@@ -49,7 +49,7 @@ final public class XMCTD01YL {
         self.characteristicDisposable = Observable.from([scannedDevices, connectedDevices])
             .merge()
             .take(1)
-            .timeout(10, scheduler: MainScheduler.instance)
+            .timeout(DispatchTimeInterval.seconds(10), scheduler: MainScheduler.instance)
             .flatMap { [weak self] (peripheral) -> Observable<Peripheral> in
                 self?.message.onNext(.connecting)
                 return peripheral.establishConnection() }
