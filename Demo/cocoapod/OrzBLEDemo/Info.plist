@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>测试蓝牙连接需要蓝牙权限</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
