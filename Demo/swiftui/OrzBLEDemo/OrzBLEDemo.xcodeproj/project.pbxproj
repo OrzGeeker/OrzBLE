@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		E2CE51EB25623D8C006D9D9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE51EA25623D8C006D9D9C /* ContentView.swift */; };
 		E2CE51ED25623D8D006D9D9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE51EC25623D8D006D9D9C /* Assets.xcassets */; };
 		E2CE51F025623D8D006D9D9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE51EF25623D8D006D9D9C /* Preview Assets.xcassets */; };
+		F3AECAB1256AB5E2009F1F03 /* OrzBLE in Frameworks */ = {isa = PBXBuildFile; productRef = F3AECAB0256AB5E2009F1F03 /* OrzBLE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3AECAB1256AB5E2009F1F03 /* OrzBLE in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +87,9 @@
 			dependencies = (
 			);
 			name = OrzBLEDemo;
+			packageProductDependencies = (
+				F3AECAB0256AB5E2009F1F03 /* OrzBLE */,
+			);
 			productName = OrzBLEDemo;
 			productReference = E2CE51E525623D8C006D9D9C /* OrzBLEDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +117,9 @@
 				Base,
 			);
 			mainGroup = E2CE51DC25623D8C006D9D9C;
+			packageReferences = (
+				F3AECAAF256AB5E2009F1F03 /* XCRemoteSwiftPackageReference "OrzBLE" */,
+			);
 			productRefGroup = E2CE51E625623D8C006D9D9C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -328,6 +336,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F3AECAAF256AB5E2009F1F03 /* XCRemoteSwiftPackageReference "OrzBLE" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/joker/Documents/OrzBLE";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F3AECAB0256AB5E2009F1F03 /* OrzBLE */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3AECAAF256AB5E2009F1F03 /* XCRemoteSwiftPackageReference "OrzBLE" */;
+			productName = OrzBLE;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E2CE51DD25623D8C006D9D9C /* Project object */;
 }
