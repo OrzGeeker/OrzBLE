@@ -7,7 +7,7 @@ let package = Package(
     name: "OrzBLE",
     platforms: [
         .macOS(.v10_13),
-        .iOS(.v9)
+        .iOS(.v13)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.

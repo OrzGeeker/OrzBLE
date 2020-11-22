@@ -7,22 +7,18 @@
 
 import SwiftUI
 import OrzBLE
-import RxSwift
 
 struct ContentView: View {
-    @State var isOpen: Bool = false
-    private let bag = DisposeBag()
     
+    @StateObject var viewModel = LightViewModel()
+
     var body: some View {
         VStack {
-            Toggle("打开BLE设备", isOn: $isOpen)
+            Toggle("打开BLE设备", isOn: $viewModel.isLightOpen)
                 .padding()
         }
         .onAppear(perform: {
-            XMCTD01YL.shared.power.subscribe { (isPowerOn) in
-                isOpen = isPowerOn
-            }.disposed(by: bag)
-            XMCTD01YL.shared.connect()
+            viewModel.connectLight()
         })
     }
 }

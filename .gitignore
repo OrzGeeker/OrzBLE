@@ -6,3 +6,4 @@ xcuserdata/
 .build/
 .swiftpm/
 *.resolved
+OrzBLE.xcodeproj/
