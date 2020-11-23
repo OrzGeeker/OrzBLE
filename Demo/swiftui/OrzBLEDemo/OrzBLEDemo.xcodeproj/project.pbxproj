@@ -11,9 +11,21 @@
 		E2CE51EB25623D8C006D9D9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE51EA25623D8C006D9D9C /* ContentView.swift */; };
 		E2CE51ED25623D8D006D9D9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE51EC25623D8D006D9D9C /* Assets.xcassets */; };
 		E2CE51F025623D8D006D9D9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE51EF25623D8D006D9D9C /* Preview Assets.xcassets */; };
-		E2F7B5A8256B76470032880F /* OrzBLE in Resources */ = {isa = PBXBuildFile; fileRef = E2F7B5A7256B76470032880F /* OrzBLE */; };
-		E2F7B5AC256B76900032880F /* OrzBLE in Frameworks */ = {isa = PBXBuildFile; productRef = E2F7B5AB256B76900032880F /* OrzBLE */; };
+		E2D2E3FC256B831C00409F29 /* OrzBLE in Frameworks */ = {isa = PBXBuildFile; productRef = E2D2E3FB256B831C00409F29 /* OrzBLE */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E2F7B5D8256B7D370032880F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E2CE51E525623D8C006D9D9C /* OrzBLEDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrzBLEDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,7 +34,6 @@
 		E2CE51EC25623D8D006D9D9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2CE51EF25623D8D006D9D9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2CE51F125623D8D006D9D9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2F7B5A7256B76470032880F /* OrzBLE */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OrzBLE; path = ../../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F7B5AC256B76900032880F /* OrzBLE in Frameworks */,
+				E2D2E3FC256B831C00409F29 /* OrzBLE in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,7 +51,6 @@
 		E2CE51DC25623D8C006D9D9C = {
 			isa = PBXGroup;
 			children = (
-				E2F7B5A7256B76470032880F /* OrzBLE */,
 				E2CE51E725623D8C006D9D9C /* OrzBLEDemo */,
 				E2CE51E625623D8C006D9D9C /* Products */,
 				E2F7B5AA256B76900032880F /* Frameworks */,
@@ -92,6 +102,7 @@
 				E2CE51E125623D8C006D9D9C /* Sources */,
 				E2CE51E225623D8C006D9D9C /* Frameworks */,
 				E2CE51E325623D8C006D9D9C /* Resources */,
+				E2F7B5D8256B7D370032880F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,7 +110,7 @@
 			);
 			name = OrzBLEDemo;
 			packageProductDependencies = (
-				E2F7B5AB256B76900032880F /* OrzBLE */,
+				E2D2E3FB256B831C00409F29 /* OrzBLE */,
 			);
 			productName = OrzBLEDemo;
 			productReference = E2CE51E525623D8C006D9D9C /* OrzBLEDemo.app */;
@@ -129,6 +140,7 @@
 			);
 			mainGroup = E2CE51DC25623D8C006D9D9C;
 			packageReferences = (
+				E2D2E3FA256B831C00409F29 /* XCRemoteSwiftPackageReference "OrzBLE" */,
 			);
 			productRefGroup = E2CE51E625623D8C006D9D9C /* Products */;
 			projectDirPath = "";
@@ -145,7 +157,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2CE51F025623D8D006D9D9C /* Preview Assets.xcassets in Resources */,
-				E2F7B5A8256B76470032880F /* OrzBLE in Resources */,
 				E2CE51ED25623D8D006D9D9C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,9 +359,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		E2D2E3FA256B831C00409F29 /* XCRemoteSwiftPackageReference "OrzBLE" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OrzGeeker/OrzBLE.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		E2F7B5AB256B76900032880F /* OrzBLE */ = {
+		E2D2E3FB256B831C00409F29 /* OrzBLE */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = E2D2E3FA256B831C00409F29 /* XCRemoteSwiftPackageReference "OrzBLE" */;
 			productName = OrzBLE;
 		};
 /* End XCSwiftPackageProductDependency section */

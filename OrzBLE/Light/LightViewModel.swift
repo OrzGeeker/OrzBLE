@@ -1,13 +1,13 @@
 //
 //  LightViewModel.swift
-//  OrzBLEDemo
+//  OrzBLE
 //
 //  Created by joker on 2020/11/23.
 //
 import Combine
 import RxSwift
 
-public final class LightViewModel: ObservableObject {
+final class LightViewModel: ObservableObject {
     
     @Published public var isLightOpen: Bool = false {
         willSet(newValue) {
@@ -16,11 +16,11 @@ public final class LightViewModel: ObservableObject {
         }
     }
     
-    public init() {
+    init() {
         configLight()
     }
     
-    public func connectLight() {
+    func connectLight() {
         light.connect()
     }
     

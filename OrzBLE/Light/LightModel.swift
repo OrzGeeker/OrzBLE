@@ -1,6 +1,6 @@
 //
 //  LightModel.swift
-//  OrzBLEDemo
+//  OrzBLE
 //
 //  Created by joker on 2020/11/23.
 //
