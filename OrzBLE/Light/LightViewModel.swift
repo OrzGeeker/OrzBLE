@@ -38,12 +38,16 @@ final class LightViewModel: ObservableObject {
 
     func configLight() {
         
-        light.power.subscribe { (isPowerOn) in
+        light.power
+            .observeOn(MainScheduler.instance)
+            .subscribe { (isPowerOn) in
             self.isLightOpen = isPowerOn.element ?? false
             self.isBLEOpen = true
         }.disposed(by: bag)
         
-        light.connectedDevice.subscribe { (device) in
+        light.connectedDevice
+            .observeOn(MainScheduler.instance)
+            .subscribe { (device) in
             self.title = device.element?.name ?? ""
         }.disposed(by: bag)
 
