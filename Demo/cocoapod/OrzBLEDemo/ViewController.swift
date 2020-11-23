@@ -19,8 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lightSwitch: UISwitch!
     
     @IBAction func switchAction(_ sender: UISwitch) {
-        sender.isOn ? light.powerOff() : light.powerOn()
-        sender.isOn = !sender.isOn
+        sender.isOn ? light.powerOn() : light.powerOff()
     }
     
     override func viewDidLoad() {
