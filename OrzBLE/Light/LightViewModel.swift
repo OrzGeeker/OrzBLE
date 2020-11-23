@@ -16,6 +16,10 @@ final class LightViewModel: ObservableObject {
         }
     }
     
+    @Published public var isBLEOpen = false
+    
+    @Published public var title: String = "床头灯"
+    
     init() {
         configLight()
     }
@@ -33,9 +37,18 @@ final class LightViewModel: ObservableObject {
     
 
     func configLight() {
+        
         light.power.subscribe { (isPowerOn) in
-            self.isLightOpen = isPowerOn
+            self.isLightOpen = isPowerOn.element ?? false
+            self.isBLEOpen = true
         }.disposed(by: bag)
+        
+        light.connectedDevice.subscribe { (device) in
+            self.title = device.element?.name ?? ""
+        }.disposed(by: bag)
+
+        
+        connectLight()
     }
 
     func updateListStatue() {

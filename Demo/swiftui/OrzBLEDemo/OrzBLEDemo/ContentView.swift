@@ -11,7 +11,9 @@ import OrzBLE
 struct ContentView: View {
     
     var body: some View {
-        LightView()
+        NavigationView {
+            LightView()
+        }
     }
 }
 
