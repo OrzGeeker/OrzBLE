@@ -7,7 +7,7 @@
 import Combine
 import RxSwift
 
-final class LightViewModel: ObservableObject {
+public final class LightViewModel: ObservableObject {
     
     @Published var isLightOpen: Bool = false {
         willSet(newValue) {
