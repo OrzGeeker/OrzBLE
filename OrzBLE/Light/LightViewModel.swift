@@ -4,6 +4,7 @@
 //
 //  Created by joker on 2020/11/23.
 //
+import SwiftUI
 import Combine
 import RxSwift
 
@@ -20,6 +21,14 @@ final class LightViewModel: ObservableObject {
     
     @Published public var title: String = "床头灯"
     
+    @Published public var color: Color = .white {
+        willSet (newColor) {
+            
+        }
+    }
+    
+    @Published public var brightness: Float = 0
+    
     init() {
         configLight()
     }
@@ -28,34 +37,48 @@ final class LightViewModel: ObservableObject {
         light.connect()
     }
     
-
     // MARK: 私有方法
     @Published private var model = LightModel()
     
     private let bag = DisposeBag()
     private let light = XMCTD01YL.shared
     
-
+    
     func configLight() {
         
         light.power
             .observeOn(MainScheduler.instance)
-            .subscribe { (isPowerOn) in
-            self.isLightOpen = isPowerOn.element ?? false
-            self.isBLEOpen = true
-        }.disposed(by: bag)
+            .subscribe { (isPowerOnEvent) in
+                self.isLightOpen = isPowerOnEvent.element ?? false
+                self.isBLEOpen = true
+            }.disposed(by: bag)
         
         light.connectedDevice
             .observeOn(MainScheduler.instance)
-            .subscribe { (device) in
-            self.title = device.element?.name ?? ""
-        }.disposed(by: bag)
-
+            .subscribe { (deviceEvent) in
+                self.title = deviceEvent.element?.name ?? ""
+            }.disposed(by: bag)
+        
+        light.bright
+            .observeOn(MainScheduler.instance)
+            .subscribe { (brightEvent) in
+                if let bright = brightEvent.element {
+                    self.brightness = Float(bright)
+                }
+            }
+            .disposed(by: bag)
         
         connectLight()
     }
-
+    
     func updateListStatue() {
         model.isOpen ? light.powerOn() : light.powerOff()
+    }
+}
+
+
+extension Color {
+    static func convertFromRGBTuple(_ rgb: (UInt8, UInt8, UInt8)) -> Color {
+        return Color(red: Double(rgb.0), green: Double(rgb.1), blue: Double(rgb.2))
     }
 }
