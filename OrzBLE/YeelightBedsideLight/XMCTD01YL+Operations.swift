@@ -18,9 +18,16 @@ public extension XMCTD01YL {
         self.connectDisposable = centralManager
             .observeState()
             .startWith(self.centralManager.state)
+            .distinctUntilChanged()
             .subscribe { [weak self] (event) in
-                self?.findCharacteristic()
-        }
+                if let status = event.element {
+                    if(status == .poweredOn) {
+                        self?.findCharacteristic()
+                    }
+                    self?.bleStatus.onNext(status)
+                }
+                
+            }
     }
     
     func disconnect() {

@@ -14,11 +14,12 @@ final public class XMCTD01YL {
     
     public static let shared = XMCTD01YL()
     
+    public let bleStatus = PublishSubject<BluetoothState>()
     public let power = PublishSubject<Bool>()
     public let bright = PublishSubject<UInt8>()
-    public let lightMode = PublishSubject<UInt8>()
+    public let lightMode = PublishSubject<LightMode>()
     public let lightColor = PublishSubject<(UInt8, UInt8, UInt8)>()
-    public let message = PublishSubject<XMCTD01YL.message>()
+    public let message = PublishSubject<XMCTD01YL.MessageTip>()
     public let connectedDevice = PublishSubject<Peripheral>()
     public let error = PublishSubject<Error>()
     
@@ -99,7 +100,7 @@ final public class XMCTD01YL {
                     let isPowerOn = (data[2] == 1)
                     self.power.onNext(isPowerOn)
                     self.bright.onNext(data[8])
-                    self.lightMode.onNext(data[3])
+                    self.lightMode.onNext(LightMode.init(rawValue: data[3]) ?? .unknown)
                     self.lightColor.onNext((data[4],data[5],data[6]))
                 }
                     //设备断开连接

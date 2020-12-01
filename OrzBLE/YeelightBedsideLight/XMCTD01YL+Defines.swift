@@ -132,12 +132,21 @@ public extension XMCTD01YL {
             return cmdData
         }
     }
-    enum message: String {
+    enum MessageTip: String {
         case disconnected = "device disconnected!"
         case authTip = "Need auth! You should press the mode change Button of Yeelight Bedside light to allow you phone control it!"
         case authSuccess = "Auth successfully!"
         case authFailed = "Auth timeout Failed!"
         case connecting = "Connecting ..."
         case connected = "device connected!"
+    }
+    
+    enum LightMode: UInt8, Identifiable, CaseIterable {
+        case unknown = 0
+        case color = 1
+        case day = 2
+        case ambient = 3
+        
+        public var id: UInt8 { self.rawValue }
     }
 }

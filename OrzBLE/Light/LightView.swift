@@ -8,9 +8,7 @@
 import SwiftUI
 
 public struct LightView: View {
-    
-    var isBLEOpen = true
-    
+
     @StateObject private var viewModel = LightViewModel()
     
     public init() {}
@@ -18,15 +16,28 @@ public struct LightView: View {
     public var body: some View {
         
         VStack {
-            if(viewModel.isBLEOpen || isBLEOpen) {
-                VStack {
-                    ColorPicker("选择灯颜色", selection: $viewModel.color, supportsOpacity: false)
-                    Slider(value: $viewModel.brightness, in: 0...100)
-                }.padding()
+            if(viewModel.isBLEOpen) {
+                if(viewModel.isLightOpen) {
+                    VStack {
+                        Picker(selection: $viewModel.lightMode, label: Text("灯光模式")) {
+                            Text("彩色模式")
+                                .tag(XMCTD01YL.LightMode.color)
+                            Text("日光模式")
+                                .tag(XMCTD01YL.LightMode.day)
+                            Text("流光模式")
+                                .tag(XMCTD01YL.LightMode.ambient)
+                        }
+
+                        ColorPicker("选择灯颜色", selection: $viewModel.color, supportsOpacity: false)
+                        
+                        Slider(value: $viewModel.brightness, in: 0...100)
+                        
+                    }.padding()
+                }
                 Spacer()
                 HStack {
                     Button(action: {
-                        viewModel.isLightOpen.toggle()
+                        viewModel.toggleLight()
                     }, label: {
                         Image(viewModel.isLightOpen ? "lightOn" : "lightOff", bundle: Bundle.module)
                             .resizable()
@@ -37,7 +48,7 @@ public struct LightView: View {
                 }
                 Spacer()
             } else {
-                Text("设备未连接")
+                Text("蓝牙未打开")
                     .font(.title)
                     .bold()
             }

@@ -10,47 +10,83 @@ import RxSwift
 
 final class LightViewModel: ObservableObject {
     
-    @Published public var isLightOpen: Bool = false {
-        willSet(newValue) {
-            model.isOpen = newValue
-            updateListStatue()
-        }
-    }
+    @Published public var isLightOpen: Bool = false
     
     @Published public var isBLEOpen = false
     
     @Published public var title: String = "床头灯"
     
     @Published public var color: Color = .white {
-        willSet (newColor) {
-            
+        willSet(newValue) {
+            if newValue != color {
+                changeColor(newValue)
+            }
         }
     }
     
-    @Published public var brightness: Float = 0
+    @Published public var brightness: Float = 0 {
+        willSet(newValue) {
+            if newValue != brightness {
+                lightBright(UInt8(newValue))
+            }
+        }
+    }
+
+    @Published public var messageContent: String = ""
+    
+    @Published public var lightMode: XMCTD01YL.LightMode  = XMCTD01YL.LightMode.day {
+         willSet(newValue) {
+            if newValue != lightMode {
+                changeLightMode(newValue)
+            }
+        }
+    }
     
     init() {
         configLight()
     }
     
-    func connectLight() {
-        light.connect()
+    func toggleLight() {
+        self.isLightOpen ? light.powerOff() : light.powerOn()
     }
     
-    // MARK: 私有方法
-    @Published private var model = LightModel()
+    func lightBright(_ brightness: UInt8) {
+        light.brightLight(brightness)
+    }
+    
+    func changeColor(_ color: Color) {
+        if self.lightMode == .color,
+           let rgbTupler = self.color.convertToRGBTuple() {
+            let arg = (R: rgbTupler.0, G: rgbTupler.1, B: rgbTupler.2, brightness: UInt8(self.brightness))
+            light.sendCommand(.color(arg))
+        }
+    }
+    
+    func changeLightMode(_ mode: XMCTD01YL.LightMode) {
+        switch mode {
+        case .day:
+            light.sendCommand(.daylight)
+        case .ambient:
+            light.sendCommand(.ambilight)
+        case .color:
+            changeColor(self.color)
+        default:
+            break
+        }
+    }
+    
+    // MARK: 私有成员和函数
     
     private let bag = DisposeBag()
+    
     private let light = XMCTD01YL.shared
     
-    
-    func configLight() {
+    private func configLight() {
         
         light.power
             .observeOn(MainScheduler.instance)
             .subscribe { (isPowerOnEvent) in
                 self.isLightOpen = isPowerOnEvent.element ?? false
-                self.isBLEOpen = true
             }.disposed(by: bag)
         
         light.connectedDevice
@@ -68,17 +104,74 @@ final class LightViewModel: ObservableObject {
             }
             .disposed(by: bag)
         
+        light.lightMode
+            .observeOn(MainScheduler.instance)
+            .subscribe { (modeEvent) in
+                if let mode = modeEvent.element {
+                    self.lightMode = mode
+                }
+            }.disposed(by: bag)
+        
+        light.message
+            .observeOn(MainScheduler.instance)
+            .subscribe { (messageEvent) in
+                if let message = messageEvent.element {
+                    switch message {
+                    case .authTip:
+                        self.messageContent = "正在授权，你需要按一下床头灯上的小按钮授权App连接设备"
+                    case .authFailed:
+                        self.messageContent = "授权失败"
+                    case .connecting:
+                        self.messageContent = "正在连接设备..."
+                    case .disconnected:
+                        self.messageContent = "设备连接断开了"
+                    case .authSuccess:
+                        self.messageContent = "授权成功"
+                    case .connected:
+                        self.messageContent = "连接成功"
+                        break
+                    }
+                }
+            }.disposed(by: bag)
+        
+        light.bleStatus
+            .observeOn(MainScheduler.instance)
+            .subscribe { (bleStatusEvent) in
+                if let bleStatus = bleStatusEvent.element {
+                    switch bleStatus {
+                    case .poweredOn:
+                        self.isBLEOpen = true
+                    default:
+                        self.isBLEOpen = false
+                    }
+                }
+            }.disposed(by: bag)
+        
         connectLight()
     }
     
-    func updateListStatue() {
-        model.isOpen ? light.powerOn() : light.powerOff()
+    private func connectLight() {
+        light.connect()
     }
 }
 
-
+typealias RGBTuple = (UInt8, UInt8, UInt8)
 extension Color {
-    static func convertFromRGBTuple(_ rgb: (UInt8, UInt8, UInt8)) -> Color {
+    static func convertFromRGBTuple(_ rgb: RGBTuple) -> Color {
         return Color(red: Double(rgb.0), green: Double(rgb.1), blue: Double(rgb.2))
+    }
+    
+    func convertToRGBTuple() -> RGBTuple? {
+        guard let cgColor = self.cgColor,
+              let r = cgColor.components?[0],
+              let g = cgColor.components?[1],
+              let b = cgColor.components?[2] else {
+            return nil
+        }
+        
+        let R: UInt8 = UInt8(r * 255);
+        let G: UInt8 = UInt8(g * 255);
+        let B: UInt8 = UInt8(b * 255);
+        return (R, G, B);
     }
 }
