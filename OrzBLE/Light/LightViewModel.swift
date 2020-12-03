@@ -14,6 +14,8 @@ final class LightViewModel: ObservableObject {
     
     @Published public var isBLEOpen = false
     
+    @Published public var isConnected = false
+    
     @Published public var title: String = "床头灯"
     
     @Published public var color: Color = .white {
@@ -75,6 +77,14 @@ final class LightViewModel: ObservableObject {
         }
     }
     
+    func toggleConnect() {
+        if(self.isConnected) {
+            disconnectLight()
+        } else {
+            connectLight()
+        }
+    }
+    
     // MARK: 私有成员和函数
     
     private let bag = DisposeBag()
@@ -124,10 +134,12 @@ final class LightViewModel: ObservableObject {
                     case .connecting:
                         self.messageContent = "正在连接设备..."
                     case .disconnected:
+                        self.isConnected = false
                         self.messageContent = "设备连接断开了"
                     case .authSuccess:
                         self.messageContent = "授权成功"
                     case .connected:
+                        self.isConnected = true
                         self.messageContent = "连接成功"
                         break
                     }
@@ -152,6 +164,10 @@ final class LightViewModel: ObservableObject {
     
     private func connectLight() {
         light.connect()
+    }
+    
+    private func disconnectLight() {
+        light.sendCommand(.disconnect)
     }
 }
 
