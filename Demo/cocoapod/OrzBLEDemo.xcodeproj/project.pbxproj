@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9DE3F2B6EA21D968C761DAB2 /* Pods_OrzBLEDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD37DB7EA7B11B0179DF3A97 /* Pods_OrzBLEDemo.framework */; };
+		AE901A75E021A6E7AB52090A /* libPods-OrzBLEDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99DE7B2E3A78BA44232F51DE /* libPods-OrzBLEDemo.a */; };
 		F3B9C55921D8ADBC006B087C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B9C55821D8ADBC006B087C /* AppDelegate.swift */; };
 		F3B9C55B21D8ADBC006B087C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B9C55A21D8ADBC006B087C /* ViewController.swift */; };
 		F3B9C55E21D8ADBC006B087C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B9C55C21D8ADBC006B087C /* Main.storyboard */; };
@@ -31,7 +31,7 @@
 /* Begin PBXFileReference section */
 		58207A5316F528A10C07A25F /* Pods-OrzBLEDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzBLEDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrzBLEDemo/Pods-OrzBLEDemo.release.xcconfig"; sourceTree = "<group>"; };
 		764682C457B4C79DB58D11AE /* Pods-OrzBLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzBLE.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrzBLE/Pods-OrzBLE.release.xcconfig"; sourceTree = "<group>"; };
-		AD37DB7EA7B11B0179DF3A97 /* Pods_OrzBLEDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrzBLEDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99DE7B2E3A78BA44232F51DE /* libPods-OrzBLEDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OrzBLEDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD767732197F43D0BD5C9630 /* Pods-OrzBLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzBLE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OrzBLE/Pods-OrzBLE.debug.xcconfig"; sourceTree = "<group>"; };
 		E9832DBC08F70CD0EB78F27C /* Pods-OrzBLEDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzBLEDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OrzBLEDemo/Pods-OrzBLEDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		EA86E716373B1F512DAC4C49 /* Pods_OrzBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrzBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DE3F2B6EA21D968C761DAB2 /* Pods_OrzBLEDemo.framework in Frameworks */,
+				AE901A75E021A6E7AB52090A /* libPods-OrzBLEDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 				F367AA2B21D8D2AE0015F44E /* OrzBLE.framework */,
 				F367AA2621D8CFCD0015F44E /* OrzBLE.framework */,
 				EA86E716373B1F512DAC4C49 /* Pods_OrzBLE.framework */,
-				AD37DB7EA7B11B0179DF3A97 /* Pods_OrzBLEDemo.framework */,
+				99DE7B2E3A78BA44232F51DE /* libPods-OrzBLEDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,7 +123,6 @@
 				F3B9C55221D8ADBC006B087C /* Frameworks */,
 				F3B9C55321D8ADBC006B087C /* Resources */,
 				F3B9C57B21D8AE72006B087C /* Embed Frameworks */,
-				A784250679939F233DECB770 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,23 +201,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A784250679939F233DECB770 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OrzBLEDemo/Pods-OrzBLEDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OrzBLEDemo/Pods-OrzBLEDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OrzBLEDemo/Pods-OrzBLEDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
