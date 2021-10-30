@@ -13,6 +13,6 @@ just capsule functions about bluetooth into a single repo
   s.source       = { :git => "https://github.com/OrzGeeker/OrzBLE.git", :tag => "#{s.version}" }
   s.source_files  = "OrzBLE/**/*.{h,hpp,m,mm,swift}"
   s.exclude_files = "OrzBLE/Light/*"
-  s.dependency "RxBluetoothKit", "~> 5.2.1"
+  s.dependency "RxBluetoothKit"
   s.swift_version = "5.0"
 end

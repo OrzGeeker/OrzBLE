@@ -8,5 +8,6 @@ target 'OrzBLEDemo' do
   
   # Pods for OrzBLEDemo
   pod 'OrzBLE', :path => '../../OrzBLE.podspec'
+  pod 'RxBluetoothKit', :path => '../../RxBluetoothKit'
 
 end
