@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,6 @@ import PackageDescription
 let package = Package(
     name: "OrzBLE",
     platforms: [
-        .macOS(.v11),
         .iOS(.v14)
     ],
     products: [
@@ -17,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-         .package(url: "https://github.com/polidea/RxBluetoothKit.git", from: "6.0.0"),
+         .package(url: "https://github.com/OrzGeeker/RxBluetoothKit.git", from: "6.0.0-ios"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,12 +27,5 @@ let package = Package(
                 "RxBluetoothKit"
             ],
             path:"OrzBLE",
-            exclude: [
-                "Info.plist",
-                "OrzBLE.h"
-            ]),
-        .testTarget(
-            name: "OrzBLETests",
-            dependencies: ["OrzBLE"]),
     ]
 )
