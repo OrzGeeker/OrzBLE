@@ -6,8 +6,6 @@
 //  Copyright © 2018 joker. All rights reserved.
 //
 
-import RxBluetoothKit
-import RxSwift
 import CoreBluetooth
 
 final public class XMCTD01YL {

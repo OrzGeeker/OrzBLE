@@ -6,8 +6,6 @@
 //
 
 import CoreBluetooth
-import RxBluetoothKit
-import RxSwift
 
 public extension XMCTD01YL {
     

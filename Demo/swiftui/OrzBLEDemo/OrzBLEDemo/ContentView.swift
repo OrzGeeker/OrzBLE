@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import OrzBLE
 
 struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            LightView()
+            Text("Hello")
         }
     }
 }

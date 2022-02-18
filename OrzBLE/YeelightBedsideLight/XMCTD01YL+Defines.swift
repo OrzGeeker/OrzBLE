@@ -6,7 +6,6 @@
 //
 
 import CoreBluetooth
-import RxBluetoothKit
 
 public extension XMCTD01YL {
     enum Names: String {
