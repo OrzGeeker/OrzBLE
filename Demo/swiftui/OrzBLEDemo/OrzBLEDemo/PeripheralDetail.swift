@@ -21,7 +21,10 @@ struct PeripheralDetail: View {
     
     var body: some View {
         VStack {
-            Text("Hello")
+            List(peripheral.services) { service in
+                Text(service.id)
+                    .font(.system(size: 10))
+            }
         }
         .onAppear(perform: {
             central.connectPeripheral(peripheral)
@@ -36,6 +39,10 @@ struct PeripheralDetail: View {
             }
             .onReceive(peripheral.$state) { state in
                 isConnected = state == .connected
+                
+                if isConnected {
+                    peripheral.discoverServices()
+                }
             }
             .disabled(false)
         }
