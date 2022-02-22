@@ -57,6 +57,8 @@ extension Central: CBCentralManagerDelegate {
         updateDiscoveredPeripheral(peripheral)
     }
     
+    // MARK: Helper
+    
     private func updateDiscoveredPeripheral(_ cbPeripheral: CBPeripheral) {
         if let discoveredPeripheral = discoveredPeripherals.first(where: {
             $0.id == cbPeripheral.identifier
@@ -94,11 +96,8 @@ extension Central {
         guard self.manager.state == .poweredOn else {
             return
         }
-        
-        let cbUUIDs = services?.map { uuid in
-            return CBUUID(nsuuid: uuid)
-        }
-        self.manager.scanForPeripherals(withServices: cbUUIDs, options: options)
+    
+        self.manager.scanForPeripherals(withServices: services?.cbUUIDs, options: options)
     }
     
     public func stopScan() {
@@ -111,14 +110,15 @@ extension Central {
     }
     
     public func connectPeripheral(_ peripheral: Peripheral, options: [String: Any]? = nil) {
-        if peripheral.cbPeripheral.state != .connected {
-            self.manager.connect(peripheral.cbPeripheral, options: options)
-        }
+        self.manager.connect(peripheral.cbPeripheral, options: options)
     }
     
     public func cancelConnectPeripheral(_ peripheral: Peripheral) {
-        if peripheral.cbPeripheral.state == .connected {
-            self.manager.cancelPeripheralConnection(peripheral.cbPeripheral)
-        }
+        self.manager.cancelPeripheralConnection(peripheral.cbPeripheral)
     }
+}
+
+
+extension Array where Element == UUID {
+    var cbUUIDs: [CBUUID] { self.map { CBUUID(nsuuid: $0) } }
 }

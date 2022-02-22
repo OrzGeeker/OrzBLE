@@ -16,11 +16,11 @@ public final class Peripheral: NSObject, ObservableObject {
         self.cbPeripheral = cbPeripheral
     }
 
-    @Published
     public var rssi: NSNumber?
     
     @Published
     public var state: CBPeripheralState = .disconnected
+    
 }
 
 extension Peripheral: Identifiable {
@@ -32,18 +32,17 @@ extension Peripheral: Identifiable {
 
 extension Peripheral: CBPeripheralDelegate {
     
-    public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        self.rssi = error == nil ? nil : RSSI
-    }
+
 }
 
 
 extension Peripheral {
+    
     public var name: String? {
-        return cbPeripheral.name
+        self.cbPeripheral.name
     }
     
-    public func readRssi() {
-        self.cbPeripheral.readRSSI()
+    public func discoverServices(_ serviceUUIDs: [UUID]? = nil) {
+        self.cbPeripheral.discoverServices(serviceUUIDs?.cbUUIDs)
     }
 }
