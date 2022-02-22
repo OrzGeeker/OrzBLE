@@ -38,6 +38,32 @@ extension Central: CBCentralManagerDelegate {
             discoveredPeripherals.append(discoveredPeripheral)
         }
     }
+    
+    public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+         print("connect success")
+        
+        updateDiscoveredPeripheral(peripheral)
+    }
+    
+    public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("connect fail")
+        
+        updateDiscoveredPeripheral(peripheral)
+    }
+    
+    public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("disconnect")
+        
+        updateDiscoveredPeripheral(peripheral)
+    }
+    
+    private func updateDiscoveredPeripheral(_ cbPeripheral: CBPeripheral) {
+        if let discoveredPeripheral = discoveredPeripherals.first(where: {
+            $0.id == cbPeripheral.identifier
+        }) {
+            discoveredPeripheral.state = cbPeripheral.state
+        }
+    }
 }
 
 extension Central {
@@ -82,5 +108,17 @@ extension Central {
         }
         
         self.manager.stopScan()
+    }
+    
+    public func connectPeripheral(_ peripheral: Peripheral, options: [String: Any]? = nil) {
+        if peripheral.cbPeripheral.state != .connected {
+            self.manager.connect(peripheral.cbPeripheral, options: options)
+        }
+    }
+    
+    public func cancelConnectPeripheral(_ peripheral: Peripheral) {
+        if peripheral.cbPeripheral.state == .connected {
+            self.manager.cancelPeripheralConnection(peripheral.cbPeripheral)
+        }
     }
 }

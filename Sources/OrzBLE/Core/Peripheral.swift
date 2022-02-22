@@ -18,6 +18,9 @@ public final class Peripheral: NSObject, ObservableObject {
 
     @Published
     public var rssi: NSNumber?
+    
+    @Published
+    public var state: CBPeripheralState = .disconnected
 }
 
 extension Peripheral: Identifiable {
