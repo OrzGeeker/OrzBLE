@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E210B5A027C48AF4006D1AA6 /* PeripheralList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210B59F27C48AF4006D1AA6 /* PeripheralList.swift */; };
 		E210B5A227C48E88006D1AA6 /* PeripheralDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210B5A127C48E88006D1AA6 /* PeripheralDetail.swift */; };
+		E210C9E027C507E8006D1AA6 /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210C9DF27C507E8006D1AA6 /* ServiceDetail.swift */; };
 		E2392A0527BFF62400F5996B /* OrzBLE in Frameworks */ = {isa = PBXBuildFile; productRef = E2392A0427BFF62400F5996B /* OrzBLE */; };
 		E2392A0627BFF62400F5996B /* OrzBLE in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E2392A0427BFF62400F5996B /* OrzBLE */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E2CE51E925623D8C006D9D9C /* OrzBLEDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE51E825623D8C006D9D9C /* OrzBLEDemoApp.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		E210B59F27C48AF4006D1AA6 /* PeripheralList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralList.swift; sourceTree = "<group>"; };
 		E210B5A127C48E88006D1AA6 /* PeripheralDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDetail.swift; sourceTree = "<group>"; };
+		E210C9DF27C507E8006D1AA6 /* ServiceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetail.swift; sourceTree = "<group>"; };
 		E2392A0327BFF51C00F5996B /* OrzBLE */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OrzBLE; path = ../../..; sourceTree = "<group>"; };
 		E2CE51E525623D8C006D9D9C /* OrzBLEDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrzBLEDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CE51E825623D8C006D9D9C /* OrzBLEDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzBLEDemoApp.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				E2CE51E825623D8C006D9D9C /* OrzBLEDemoApp.swift */,
 				E210B59F27C48AF4006D1AA6 /* PeripheralList.swift */,
 				E210B5A127C48E88006D1AA6 /* PeripheralDetail.swift */,
+				E210C9DF27C507E8006D1AA6 /* ServiceDetail.swift */,
 				E2CE51EC25623D8D006D9D9C /* Assets.xcassets */,
 				E2CE51F125623D8D006D9D9C /* Info.plist */,
 				E2CE51EE25623D8D006D9D9C /* Preview Content */,
@@ -176,6 +179,7 @@
 			files = (
 				E210B5A227C48E88006D1AA6 /* PeripheralDetail.swift in Sources */,
 				E210B5A027C48AF4006D1AA6 /* PeripheralList.swift in Sources */,
+				E210C9E027C507E8006D1AA6 /* ServiceDetail.swift in Sources */,
 				E2CE51E925623D8C006D9D9C /* OrzBLEDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

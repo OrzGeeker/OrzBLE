@@ -20,17 +20,27 @@ struct PeripheralDetail: View {
     var isConnected = false
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            if peripheral.services.count > 0 {
+                Text("Services").foregroundColor(.orange).font(.subheadline).bold()
+                .font(.subheadline)
+                .padding()
+            }
             List(peripheral.services) { service in
-                Text(service.id)
-                    .font(.system(size: 10))
+                NavigationLink {
+                    ServiceDetail(service: service)
+                        .environmentObject(peripheral)
+                } label: {
+                    Text(service.id)
+                        .font(.system(size: 10))
+                }
             }
         }
         .onAppear(perform: {
             central.connectPeripheral(peripheral)
         })
         .onDisappear(perform: {
-            central.cancelConnectPeripheral(peripheral)
+//            central.cancelConnectPeripheral(peripheral)
         })
         .navigationTitle(peripheral.name ?? "")
         .toolbar {

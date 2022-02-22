@@ -49,6 +49,29 @@ extension Peripheral: CBPeripheralDelegate {
         }
         
     }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didDiscoverIncludedServicesFor service: CBService, error: Error?) {
+        
+        if let discoveredService = services.first(where: { $0.id == service.uuid.uuidString}), let includedServices = service.includedServices {
+            discoveredService.includedServices = includedServices.compactMap({ cbService in
+                Service(cbService: cbService)
+            })
+        }
+         
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        
+        if let discoveredService = services.first(where: { $0.id == service.uuid.uuidString}), let characteristics = service.characteristics {
+            discoveredService.characteristics = characteristics.compactMap({ cbCharacteristic in
+                Characteristic(cbCharacteristic: cbCharacteristic)
+            })
+        }
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
+        
+    }
 }
 
 
@@ -61,4 +84,13 @@ extension Peripheral {
     public func discoverServices(_ serviceUUIDs: [UUID]? = nil) {
         self.cbPeripheral.discoverServices(serviceUUIDs?.cbUUIDs)
     }
+    
+    public func discoverIncludedServices(_ includedServiceUUIDs: [UUID]? = nil, for service: Service) {
+        self.cbPeripheral.discoverIncludedServices(includedServiceUUIDs?.cbUUIDs, for: service.cbService)
+    }
+    
+    public func discoverCharacteristics(_ characteristicUUIDs:[UUID]? = nil, for service: Service) {
+        self.cbPeripheral.discoverCharacteristics(characteristicUUIDs?.cbUUIDs, for: service.cbService)
+    }
+    
 }
