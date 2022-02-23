@@ -9,16 +9,16 @@ import SwiftUI
 import OrzBLE
 
 struct PeripheralDetail: View {
-    
+
     @EnvironmentObject
     var central: Central
-    
+
     @StateObject
     var peripheral: Peripheral
-    
+
     @State
     var isConnected = false
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             if peripheral.services.count > 0 {
@@ -49,7 +49,7 @@ struct PeripheralDetail: View {
             }
             .onReceive(peripheral.$state) { state in
                 isConnected = state == .connected
-                
+
                 if isConnected {
                     peripheral.discoverServices()
                 }

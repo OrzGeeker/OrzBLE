@@ -9,13 +9,13 @@ import SwiftUI
 import OrzBLE
 
 struct PeripheralList: View {
-    
+
     @StateObject
     private var central = Central()
-    
+
     @State
     private var bleStatus: String = ""
-    
+
     var body: some View {
         VStack {
             List(central.discoveredPeripherals.filter({ $0.name != nil })) { peripheral in
@@ -46,9 +46,9 @@ struct PeripheralList: View {
 }
 
 struct PeripheralListItem: View {
-    
+
     var peripheral: Peripheral
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {

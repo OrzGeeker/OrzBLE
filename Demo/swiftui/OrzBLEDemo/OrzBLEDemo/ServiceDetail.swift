@@ -9,13 +9,13 @@ import SwiftUI
 import OrzBLE
 
 struct ServiceDetail: View {
-    
+
     @EnvironmentObject
     var peripheral: Peripheral
-    
+
     @StateObject
     var service: Service
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             if service.includedServices.count > 0 {
