@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OrzBLE
 
 @main
 struct OrzBLEDemoApp: App {
@@ -13,6 +14,7 @@ struct OrzBLEDemoApp: App {
         WindowGroup {
             NavigationView {
                 PeripheralList()
+                    .environmentObject(Central())
             }
         }
     }

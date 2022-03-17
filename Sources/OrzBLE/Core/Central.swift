@@ -12,7 +12,7 @@ public final class Central: NSObject, ObservableObject {
     lazy var manager: CBCentralManager = {
         CBCentralManager(delegate: self, queue: nil)
     }()
- 
+    
     @Published
     public var state: CBManagerState = .unknown
     
@@ -40,8 +40,7 @@ extension Central: CBCentralManagerDelegate {
     }
     
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-         print("connect success")
-        
+        print("connect success")
         updateDiscoveredPeripheral(peripheral)
     }
     
@@ -60,6 +59,7 @@ extension Central: CBCentralManagerDelegate {
     // MARK: Helper
     
     private func updateDiscoveredPeripheral(_ cbPeripheral: CBPeripheral) {
+        
         if let discoveredPeripheral = discoveredPeripherals.first(where: {
             $0.id == cbPeripheral.identifier
         }) {
@@ -69,7 +69,7 @@ extension Central: CBCentralManagerDelegate {
 }
 
 extension Central {
-        
+    
     static public func stateDesc(_ state: CBManagerState) -> String {
         switch state {
         case .unknown:
@@ -96,7 +96,7 @@ extension Central {
         guard self.manager.state == .poweredOn else {
             return
         }
-    
+        
         self.manager.scanForPeripherals(withServices: services?.cbUUIDs, options: options)
     }
     

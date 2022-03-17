@@ -10,8 +10,8 @@ import OrzBLE
 
 struct PeripheralList: View {
 
-    @StateObject
-    private var central = Central()
+    @EnvironmentObject
+    private var central: Central
 
     @State
     private var bleStatus: String = ""
@@ -20,7 +20,8 @@ struct PeripheralList: View {
         VStack {
             List(central.discoveredPeripherals.filter({ $0.name != nil })) { peripheral in
                 NavigationLink {
-                    PeripheralDetail(peripheral: peripheral).environmentObject(central)
+                    PeripheralDetail(peripheral: peripheral)
+                        .environmentObject(central)
                 } label: {
                     PeripheralListItem(peripheral: peripheral)
                 }

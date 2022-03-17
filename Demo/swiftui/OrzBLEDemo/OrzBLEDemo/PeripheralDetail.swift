@@ -11,9 +11,9 @@ import OrzBLE
 struct PeripheralDetail: View {
 
     @EnvironmentObject
-    var central: Central
+    private var central: Central
 
-    @StateObject
+    @ObservedObject
     var peripheral: Peripheral
 
     @State
@@ -38,9 +38,6 @@ struct PeripheralDetail: View {
         }
         .onAppear(perform: {
             central.connectPeripheral(peripheral)
-        })
-        .onDisappear(perform: {
-//            central.cancelConnectPeripheral(peripheral)
         })
         .navigationTitle(peripheral.name ?? "")
         .toolbar {
